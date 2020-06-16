@@ -1,0 +1,17 @@
+--- a/modutils_old.sh	2020-02-20 23:40:47.463544000 +0300
++++ b/modutils.sh	2020-03-23 18:51:41.381590425 +0300
+@@ -36,6 +36,7 @@
+ 		[ "$VERBOSE" != no ] && echo -n "$module "
+ 		eval "$LOAD_MODULE $module $args >/dev/null 2>&1"
+ 		loaded_modules="${loaded_modules}${module} "
++		[ "$module" == "aotom" ] && echo "LOADING MODULES" > /dev/dbox/oled0
+ 	done
+ }
+ 
+@@ -49,4 +50,6 @@
+ done
+ [ "$VERBOSE" != no ] && echo
+ 
++echo "1" > /proc/sys/kernel/printk #for more log change level or remake line
++
+ exit 0

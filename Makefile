@@ -72,7 +72,10 @@ BBLAYERS ?= \
 	$(CURDIR)/meta-maxytec \
 	$(CURDIR)/meta-octagon \
 	$(CURDIR)/meta-local \
-	$(CURDIR)/meta-qt5
+	$(CURDIR)/meta-qt5 \
+	$(CURDIR)/meta-sh4/meta-oe \
+	$(CURDIR)/meta-sh4/meta-brands/meta-cuberevo \
+	$(CURDIR)/meta-sh4/meta-brands/meta-spiderbox
 
 CONFFILES = \
 	$(TOPDIR)/env.source \
