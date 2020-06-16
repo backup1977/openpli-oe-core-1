@@ -13,3 +13,7 @@ OPTIONAL_WIFI_PACKAGES_remove_sh4 = "\
 	kernel-module-8814au \
 	kernel-module-88x2bu \
 	"
+
+ENIGMA2_OPTIONAL_remove_sh4 = " \
+	enigma2-plugin-security-firewall \
+	"
