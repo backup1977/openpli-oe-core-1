@@ -2,7 +2,6 @@ OPTIONAL_PACKAGES_remove_sh4 += "\
 	gdb \
 	nodejs\
 	rclone \
-	rtorrent \
 	zerotier \
 	udpxy \
 	"
