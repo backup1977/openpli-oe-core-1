@@ -10,7 +10,7 @@ COMPATIBLE_MACHINE = "hl101"
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
-MACHINE_KERNEL_PR_append = ".3"
+MACHINE_KERNEL_PR_append = ".4"
 
 inherit kernel machine_kernel_pr
 
@@ -18,7 +18,7 @@ DEPENDS_append_hl101 += "stlinux24-sh4-stx7109-fdma-firmware"
 
 STM_PATCH_STR = "0217"
 LINUX_VERSION = "2.6.32.71"
-SRCREV = "7e1157f2f48d3d252bfeaa86c7ce1a60465bfaf8"
+SRCREV = "56f768a7239d45473d02b11fc07a38bc2147c5ac"
 
 # By default, kernel.bbclass modifies package names to allow multiple kernels
 # to be installed in parallel. We revert this change and rprovide the versioned
