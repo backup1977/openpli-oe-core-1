@@ -3,15 +3,14 @@ LICENSE = "GPLv2"
 SECTION = "kernel"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-COMPATIBLE_MACHINE = "cuberevo|cuberevo_250hd|cuberevo_2000hd|cuberevo_3000hd|cuberevo_9500hd|cuberevo_mini|cuberevo_mini2|cuberevo_mini_fta"
-STXNUMBER = "stx7109"
-
 KV = "2.6.32"
-PV = "${KV}.71-stm24-0217"
+SRCDATE = "20200618"
+
+COMPATIBLE_MACHINE = "cuberevo|cuberevo_250hd|cuberevo_2000hd|cuberevo_3000hd|cuberevo_9500hd|cuberevo_mini|cuberevo_mini2|cuberevo_mini_fta"
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
-MACHINE_KERNEL_PR_append = ".1"
+MACHINE_KERNEL_PR_append = ".4"
 
 inherit kernel machine_kernel_pr
 
@@ -19,7 +18,9 @@ DEPENDS_append += "\
     stlinux24-sh4-${STXNUMBER}-fdma-firmware \
 "
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/linux-cuberevo:"
+STM_PATCH_STR = "0217"
+LINUX_VERSION = "2.6.32.71"
+SRCREV = "56f768a7239d45473d02b11fc07a38bc2147c5ac"
 
 # By default, kernel.bbclass modifies package names to allow multiple kernels
 # to be installed in parallel. We revert this change and rprovide the versioned
@@ -29,10 +30,7 @@ PKG_${KERNEL_PACKAGE_NAME}-image = "kernel-image"
 RPROVIDES_${KERNEL_PACKAGE_NAME}-base = "kernel-${KERNEL_VERSION}"
 RPROVIDES_kernel-image = "kernel-image-${KERNEL_VERSION}"
 
-STM_PATCH_STR = "0217"
-LINUX_VERSION = "2.6.32.71"
-
-SRC_URI = "https://github.com/OpenVisionE2/linux-sh4-2.6.32.71/archive/stmicro.tar.gz \
+SRC_URI = "git://github.com/sid8796/linux-sh4-2.6.32.71.git;protocol=git;branch=stmicro \
     file://defconfig \
     file://st-coprocessor.h \
     file://linux-sh4-i2c-st40-pio_stm24_${STM_PATCH_STR}.patch \
@@ -41,10 +39,7 @@ SRC_URI = "https://github.com/OpenVisionE2/linux-sh4-2.6.32.71/archive/stmicro.t
     ${@bb.utils.contains_any("MACHINE", "cuberevo_250hd", "file://linux-sh4-${MACHINE}_sound_stm24_${STM_PATCH_STR}.patch", "", d)} \
 "
 
-SRC_URI[md5sum] = "5384b2a96dbfa04c93a74720581d1276"
-SRC_URI[sha256sum] = "5a93a98cc466c6b5f3c1b65c9db7f2b6bb75f79b796c7dfe4f970457e8de8297"
-
-S = "${WORKDIR}/linux-sh4-2.6.32.71-stmicro"
+S = "${WORKDIR}/git"
 B = "${WORKDIR}/build"
 
 export OS = "Linux"

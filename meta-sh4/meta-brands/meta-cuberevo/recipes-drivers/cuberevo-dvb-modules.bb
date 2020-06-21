@@ -25,7 +25,7 @@ PTI_NP_PATH ?= "/data/pti_np"
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
 SRC_URI = "\
-    git://github.com/OpenVisionE2/sh4-driver.git;protocol=git \
+    git://github.com/sid8796/driver.git;protocol=git \
     file://modules.conf \
     file://modules-conf.conf \
 " 
@@ -62,7 +62,7 @@ do_compile() {
         KERNEL_SRC=${STAGING_KERNEL_DIR}    \
         KERNEL_VERSION=${KERNEL_VERSION}    \
         -C ${STAGING_KERNEL_DIR}   \
-	O=${STAGING_KERNEL_BUILDDIR} \
+        O=${STAGING_KERNEL_BUILDDIR} \
         ${@d.getVar('MACHINE',1).upper()}=1 \
         M=${S} V=1 \
         ARCH=sh \
@@ -81,7 +81,7 @@ do_install() {
         KERNEL_SRC=${STAGING_KERNEL_DIR}    \
         KERNEL_VERSION=${KERNEL_VERSION}    \
         -C ${STAGING_KERNEL_DIR}   \
-	O=${STAGING_KERNEL_BUILDDIR} \
+        O=${STAGING_KERNEL_BUILDDIR} \
         ${@d.getVar('MACHINE',1).upper()}=1 \
         M=${S} V=1 \
         ARCH=sh \
@@ -113,8 +113,8 @@ do_install() {
     ln -sf ../init.d/ddbootup ${D}${sysconfdir}/rcS.d/S01ddbootup
     install -d ${D}/bin
     install -m 755 ${S}/vdstandby ${D}/bin
-    install -d ${D}/etc
-    install -m 644 ${S}/vdstandby.cfg ${D}/etc
+    #install -d ${D}/etc
+    #install -m 644 ${S}/vdstandby.cfg ${D}/etc
 
     # if no pti_np sources are available and a custom pti.ko is present, overwrite the SH4 one
     if [ ! -e ${PTI_NP_PATH}/Makefile ]; then
@@ -123,8 +123,6 @@ do_install() {
             install -m 644 ${PTI_NP_PATH}/pti.ko ${D}/lib/modules/${KERNEL_VERSION}/extra/pti/pti.ko
         fi
     fi
-	
-	find ${D} -name stmcore-display-sti7106.ko | xargs -r rm # we don't have a 7106 chip
 }
 
 FILES_${PN}-dev += "${includedir}"
