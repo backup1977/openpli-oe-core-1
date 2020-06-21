@@ -3,23 +3,22 @@ LICENSE = "GPLv2"
 SECTION = "kernel"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-COMPATIBLE_MACHINE = "hl101"
-STXNUMBER = "stx7109"
-
 KV = "2.6.32"
-PV = "${KV}.71-stm24-0217"
+SRCDATE = "20200618"
+
+COMPATIBLE_MACHINE = "hl101"
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
-MACHINE_KERNEL_PR_append = ".2"
+MACHINE_KERNEL_PR_append = ".3"
 
 inherit kernel machine_kernel_pr
 
-DEPENDS_append += "\
-    stlinux24-sh4-${STXNUMBER}-fdma-firmware \
-"
+DEPENDS_append_hl101 += "stlinux24-sh4-stx7109-fdma-firmware"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/linux-spiderbox:"
+STM_PATCH_STR = "0217"
+LINUX_VERSION = "2.6.32.71"
+SRCREV = "7e1157f2f48d3d252bfeaa86c7ce1a60465bfaf8"
 
 # By default, kernel.bbclass modifies package names to allow multiple kernels
 # to be installed in parallel. We revert this change and rprovide the versioned
@@ -29,23 +28,19 @@ PKG_${KERNEL_PACKAGE_NAME}-image = "kernel-image"
 RPROVIDES_${KERNEL_PACKAGE_NAME}-base = "kernel-${KERNEL_VERSION}"
 RPROVIDES_kernel-image = "kernel-image-${KERNEL_VERSION}"
 
-STM_PATCH_STR = "0217"
-LINUX_VERSION = "2.6.32.71"
-
-SRC_URI = "https://github.com/OpenVisionE2/linux-sh4-2.6.32.71/archive/stmicro.tar.gz \
-    file://defconfig \
+SRC_URI = "git://github.com/sid8796/linux-sh4-2.6.32.71.git;protocol=git;branch=stmicro \
     file://st-coprocessor.h \
-    \
-    file://linux-sh4-${MACHINE}_setup_stm24_${STM_PATCH_STR}.patch \
     file://linux-usbwait123_stm24.patch \
     file://linux-sh4-stmmac_stm24_${STM_PATCH_STR}.patch \
     file://linux-sh4-i2c-st40-pio_stm24_${STM_PATCH_STR}.patch \
 "
 
-SRC_URI[md5sum] = "5384b2a96dbfa04c93a74720581d1276"
-SRC_URI[sha256sum] = "5a93a98cc466c6b5f3c1b65c9db7f2b6bb75f79b796c7dfe4f970457e8de8297"
+SRC_URI_append_hl101 = " \
+    file://linux-sh4-${MACHINE}_setup_stm24_${STM_PATCH_STR}.patch \
+    file://defconfig \
+    "
 
-S = "${WORKDIR}/linux-sh4-2.6.32.71-stmicro"
+S = "${WORKDIR}/git"
 B = "${WORKDIR}/build"
 
 export OS = "Linux"

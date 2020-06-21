@@ -25,7 +25,7 @@ PTI_NP_PATH ?= "/data/pti_np"
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
 SRC_URI = "\
-    git://github.com/OpenVisionE2/sh4-driver.git;protocol=git \
+    git://github.com/sid8796/driver.git;protocol=git \
     file://modules.conf \
     file://modules-conf.conf \
 " 
@@ -113,8 +113,8 @@ do_install() {
     ln -sf ../init.d/ddbootup ${D}${sysconfdir}/rcS.d/S01ddbootup
     install -d ${D}/bin
     install -m 755 ${S}/vdstandby ${D}/bin
-    install -d ${D}/etc
-    install -m 644 ${S}/vdstandby.cfg ${D}/etc
+# install -d ${D}/etc
+# install -m 644 ${S}/vdstandby.cfg ${D}/etc
 
     # if no pti_np sources are available and a custom pti.ko is present, overwrite the SH4 one
     if [ ! -e ${PTI_NP_PATH}/Makefile ]; then
