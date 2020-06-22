@@ -61,7 +61,7 @@ MACHINE_ESSENTIAL_EXTRA_RDEPENDS += "\
     ustslave \
     stfbcontrol \
     fp-control \
-    stinit \
+    devinit \
     ${BRAND_OEM}-dvb-modules \
     "
 

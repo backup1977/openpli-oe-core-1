@@ -6,8 +6,6 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 LICENSE = " GPLv2"
 LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=751419260aa954499f7abaabaa882bbe"
 
-RDEPENDS_${PN} = "stinit"
-
 COMPATIBLE_MACHINE = "cuberevo|cuberevo_250hd|cuberevo_2000hd|cuberevo_3000hd|cuberevo_9500hd|cuberevo_mini|cuberevo_mini2|cuberevo_mini_fta"
 
 KV = "2.6.32.71-stm24-0217"
