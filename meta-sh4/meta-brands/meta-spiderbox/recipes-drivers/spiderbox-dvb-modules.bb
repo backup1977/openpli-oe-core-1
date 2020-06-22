@@ -19,8 +19,8 @@ PACKAGES = "${PN} ${PN}-dev"
 
 PV = "${KV}+git${SRCPV}-${MACHINE}"
 PKGV = "git${GITPKGV}"
-
-PTI_NP_PATH ?= "/data/pti_np"
+#copy pti_np to the directory /home/{USER}/openpli-oe-core/sources/
+PTI_NP_PATH ?= "${DL_DIR}/pti_np"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
