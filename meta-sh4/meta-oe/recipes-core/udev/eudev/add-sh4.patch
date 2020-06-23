@@ -1,13 +1,13 @@
-From e9142650006db8740df676397377fac31a5bf4bb Mon Sep 17 00:00:00 2001
-From: captain <openatv@gmail.com>
-Date: Wed, 9 Mar 2016 18:35:47 +0100
+From c5e947c8f2c43f3aec4d1527f070cb7bed0f9e7f Mon Sep 17 00:00:00 2001
+From: Persian Prince <persianpros@yahoo.com>
+Date: Fri, 3 Jan 2020 18:40:59 +0330
 
 ---
  src/shared/missing.h | 4 ++++
  1 file changed, 4 insertions(+)
 
 diff --git a/src/shared/missing.h b/src/shared/missing.h
-index bebbb42..b87258f 100644
+index 3a83c91..b0436b0 100644
 --- a/src/shared/missing.h
 +++ b/src/shared/missing.h
 @@ -57,6 +57,8 @@
