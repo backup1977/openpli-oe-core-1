@@ -1,10 +1,10 @@
 --- a/modutils.sh	2020-06-24 11:34:16.806425511 +0300
-+++ b/modutils.sh	2020-06-24 11:41:18.584217121 +0300
++++ b/modutils.sh	2020-06-24 11:36:54.353711112 +0300
 @@ -36,6 +36,7 @@
  		[ "$VERBOSE" != no ] && echo -n "$module "
  		eval "$LOAD_MODULE $module $args >/dev/null 2>&1"
  		loaded_modules="${loaded_modules}${module} "
-+		[ "$module" == "aotom" ] && echo "LOADING MODULES" > /dev/dbox/oled0
++		/modutils.sh
  	done
  }
  
