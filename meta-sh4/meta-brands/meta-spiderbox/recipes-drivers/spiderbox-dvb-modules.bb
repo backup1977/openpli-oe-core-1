@@ -23,7 +23,7 @@ PTI_NP_PATH ?= "${DL_DIR}/pti_np"
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
 SRC_URI = "\
-    git://github.com/sid8796/driver.git;protocol=git \
+    git://github.com/sid8796/sh4-driver.git;protocol=git \
     file://modules.conf \
     file://modules-conf.conf \
 " 

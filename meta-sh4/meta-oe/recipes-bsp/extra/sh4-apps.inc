@@ -13,7 +13,7 @@ SRCREV = "${AUTOREV}"
 PV = "1.1+git${SRCPV}"
 PKGV = "1.1+git${GITPKGV}"
 
-SRC_URI = "git://github.com/kueken/apps.git;protocol=git"
+SRC_URI = "git://github.com/sid8796/sh4-apps.git;protocol=git"
 
 S = "${WORKDIR}/git/tools/${@d.getVar('PN',1).replace('-', '_')}"
 
