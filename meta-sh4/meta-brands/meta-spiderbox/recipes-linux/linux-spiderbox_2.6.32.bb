@@ -45,7 +45,7 @@ B = "${WORKDIR}/build"
 export OS = "Linux"
 KERNEL_OBJECT_SUFFIX = "ko"
 KERNEL_IMAGETYPE = "uImage"
-KERNEL_IMAGEDEST = "tmp"
+#KERNEL_IMAGEDEST = "tmp"
 KEEPUIMAGE = "yes"
 PARALLEL_MAKEINST = ""
 
