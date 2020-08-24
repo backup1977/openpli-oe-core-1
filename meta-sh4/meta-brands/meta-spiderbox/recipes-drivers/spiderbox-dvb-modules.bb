@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=751419260aa954499f7abaabaa882bbe"
 COMPATIBLE_MACHINE = "hl101"
 
 KV = "2.6.32.71-stm24-0217"
-SRCREV = "${AUTOREV}"
+SRCREV = "80653bfb650e0d4c75c0f8d257e7b2c140b572e5"
 
 inherit module machine_kernel_pr gitpkgv
 
@@ -23,7 +23,7 @@ PTI_NP_PATH ?= "${DL_DIR}/pti_np"
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
 SRC_URI = "\
-    git://github.com/sid8796/sh4-driver.git;protocol=git \
+    git://github.com/sid8796/driver.git;protocol=git \
     file://modules.conf \
     file://modules-conf.conf \
 " 

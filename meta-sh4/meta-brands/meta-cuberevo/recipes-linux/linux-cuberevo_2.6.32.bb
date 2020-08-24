@@ -20,7 +20,7 @@ DEPENDS_append += "\
 
 STM_PATCH_STR = "0217"
 LINUX_VERSION = "2.6.32.71"
-SRCREV = "fcc527d95f56894a91e0130f515df8e352d86d34"
+SRCREV = "56f768a7239d45473d02b11fc07a38bc2147c5ac"
 
 # By default, kernel.bbclass modifies package names to allow multiple kernels
 # to be installed in parallel. We revert this change and rprovide the versioned
@@ -30,7 +30,7 @@ PKG_${KERNEL_PACKAGE_NAME}-image = "kernel-image"
 RPROVIDES_${KERNEL_PACKAGE_NAME}-base = "kernel-${KERNEL_VERSION}"
 RPROVIDES_kernel-image = "kernel-image-${KERNEL_VERSION}"
 
-SRC_URI = "git://github.com/OpenVisionE2/linux-sh4-2.6.32.71.git;protocol=git;branch=stmicro \
+SRC_URI = "git://github.com/sid8796/linux-sh4-2.6.32.71.git;protocol=git;branch=stmicro \
     file://defconfig \
     file://st-coprocessor.h \
     file://linux-sh4-i2c-st40-pio_stm24_${STM_PATCH_STR}.patch \

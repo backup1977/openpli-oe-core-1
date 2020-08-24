@@ -17,7 +17,7 @@ DEPENDS_append_hl101 += "stlinux24-sh4-stx7109-fdma-firmware"
 
 STM_PATCH_STR = "0217"
 LINUX_VERSION = "2.6.32.71"
-SRCREV = "${AUTOREV}"
+SRCREV = "56f768a7239d45473d02b11fc07a38bc2147c5ac"
 
 # By default, kernel.bbclass modifies package names to allow multiple kernels
 # to be installed in parallel. We revert this change and rprovide the versioned
@@ -27,7 +27,7 @@ PKG_${KERNEL_PACKAGE_NAME}-image = "kernel-image"
 RPROVIDES_${KERNEL_PACKAGE_NAME}-base = "kernel-${KERNEL_VERSION}"
 RPROVIDES_kernel-image = "kernel-image-${KERNEL_VERSION}"
 
-SRC_URI = "git://github.com/OpenVisionE2/linux-sh4-2.6.32.71.git;protocol=git;branch=stmicro \
+SRC_URI = "git://github.com/sid8796/linux-sh4-2.6.32.71.git;protocol=git;branch=stmicro \
     file://st-coprocessor.h \
     file://linux-usbwait123_stm24.patch \
     file://linux-sh4-stmmac_stm24_${STM_PATCH_STR}.patch \
