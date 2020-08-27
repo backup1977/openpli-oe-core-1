@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=751419260aa954499f7abaabaa882bbe"
 COMPATIBLE_MACHINE = "hl101"
 
 KV = "2.6.32.71-stm24-0217"
-SRCREV = "80653bfb650e0d4c75c0f8d257e7b2c140b572e5"
+SRCREV = "${AUTOREV}"
 
 inherit module machine_kernel_pr gitpkgv
 
