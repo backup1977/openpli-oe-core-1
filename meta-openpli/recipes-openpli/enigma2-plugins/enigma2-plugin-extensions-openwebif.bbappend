@@ -65,6 +65,7 @@ python do_cleanup () {
         ('vuuno4kse', 'vuuno4kse.png', 'vu_normal_02.png', 'vu_normal_02.html'),
         ('vuzero4k', 'vuzero4k.png', 'vu_normal_02.png', 'vu_normal_02.html'),
         ('vuduo4k', 'vuduo4k.png', 'vu_normal_02.png', 'vu_normal_02.html'),
+        ('vuduo4kse', 'vuduo4kse.png', 'vu_normal_02.png', 'vu_normal_02.html'),
         ('wetekplay', 'wetekplay.png', 'wetekplay.png', 'wetekplay.html'),
         ('xp1000', 'xp1000.png', 'xp_rc14_normal.png', 'xp1000.html'),
         ('xpeedc', 'xpeedlx.png', 'xpeedlx.png', 'xpeedlx.html'),
@@ -105,6 +106,8 @@ python do_cleanup () {
         ('lunix4k', 'lunix4k.png', 'lunix4k.png', 'lunix4k.html'),
         ('e4hd', 'e4hd.png', 'e4hd.png', 'e4hd.html'),
         ('sf8008', 'sf8008.png', 'octagon.png', 'octagon.html'),
+        ('sf8008m', 'sf8008m.png', 'octagon.png', 'octagon.html'),
+        ('ustym4kpro', 'ustym4kpro.png', 'uclan.png', 'uclan.html'),
     ]
 
     import os
@@ -116,7 +119,7 @@ python do_cleanup () {
     target_box = 'unknown.png'
     target_remote = 'ow_remote.png'
     target_keymap = ''
-    exception = ''
+    exception = []
 
     for x in boxtypes:
         if x[0] == d.getVar('MACHINE', True):
@@ -124,21 +127,27 @@ python do_cleanup () {
             target_remote = x[2]
             target_keymap = x[3]
             if x[0] == 'et6x00':
-                exception = 'et6500.png'
+                exception = ['et6500.png']
             elif x[0] == 'et7x00':
-                exception = 'et7500.png'
+                exception = ['et7500.png']
             elif x[0] == 'xpeedc':
-                exception = 'xpeedlx.png'
+                exception = ['xpeedlx.png']
+            elif x[0] == 'h8':
+                exception = ['h8.png', 'h8.2s.png']
+            elif x[0] == 'h9':
+                exception = ['h9.png', 'h9.2s.png', 'h9.2h.png', 'h9.s.png', 'h9.t.png']
+            elif x[0] == 'sf8008':
+                exception = ['sf8008s.png', 'sf8008t.png', 'sf8008c.png']
             break
 
     for root, dirs, files in os.walk(images + 'boxes', topdown=False):
         for name in files:
-            if target_box != name and name != 'unknown.png' and exception != name:
+            if target_box != name and name != 'unknown.png' and name not in exception:
                 os.remove(os.path.join(root, name))
 
     for root, dirs, files in os.walk(images + 'remotes', topdown=False):
         for name in files:
-            if target_remote != name and name != 'ow_remote.png' and exception != name:
+            if target_remote != name and name != 'ow_remote.png' and name not in exception:
                 os.remove(os.path.join(root, name))
 
     for root, dirs, files in os.walk(keymaps + 'remotes', topdown=False):

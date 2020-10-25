@@ -1,0 +1,17 @@
+--- a/modutils.sh	2020-06-24 11:34:16.806425511 +0300
++++ b/modutils.sh	2020-06-24 11:36:54.353711112 +0300
+@@ -36,6 +36,7 @@
+ 		[ "$VERBOSE" != no ] && echo -n "$module "
+ 		eval "$LOAD_MODULE $module $args >/dev/null 2>&1"
+ 		loaded_modules="${loaded_modules}${module} "
++		[ "$module" == "micom" ] && mknod -m 0660 /dev/vfd c 147 0 && echo "LOAD" > /dev/vfd
+ 	done
+ }
+ 
+@@ -49,4 +50,6 @@
+ done
+ [ "$VERBOSE" != no ] && echo
+ 
++echo "1" > /proc/sys/kernel/printk #for more log change level or remake line
++
+ exit 0

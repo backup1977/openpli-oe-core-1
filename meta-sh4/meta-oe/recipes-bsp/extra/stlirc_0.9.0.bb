@@ -8,20 +8,20 @@ HOMEPAGE = "http://www.lirc.org"
 LICENSE = "GPLv2"
 DEPENDS = "virtual/kernel"
 RDEPENDS_lirc-exec = "stlirc"
-RRECOMMENDS_${PN} = "stlirc-exec kernel-module-uinput"
+RRECOMMENDS_stlirc = "stlirc-exec kernel-module-uinput"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 COMPATIBLE_MACHINE = "adb_box|arivalink200|ipbox55|ipbox99|ipbox9900|hl101|pace7241|sagemcom88|spark|spark7162|ufs910|vip1_v2|vip2_v1"
 
-RCONFLICTS_${PN} = "lirc"
+RCONFLICTS_stlirc = "lirc"
 RCONFLICTS_stlirc-exec = "lirc-exec"
 RCONFLICTS_stlirc-remotes = "lirc-remotes"
-RREPLACES_${PN} = "lirc"
+RREPLACES_stlirc = "lirc"
 RREPLACES_stlirc-exec = "lirc-exec"
 RREPLACES_stlirc-remotes = "lirc-remotes"
-RPROVIDES_${PN} += "lirc"
-RPROVIDES_${PN}-exec += "lirc-exec"
-RPROVIDES_${PN}-remotes += "lirc-remotes"
+RPROVIDES_stlirc += "lirc"
+RPROVIDES_stlirc-exec += "lirc-exec"
+RPROVIDES_stlirc-remotes += "lirc-remotes"
 PROVIDES += "lirc lirc-exec lirc-remotes"
 
 SRC_URI = "https://sourceforge.net/projects/lirc/files/LIRC/0.9.0/lirc-${PV}.tar.bz2 \
@@ -30,10 +30,10 @@ SRC_URI = "https://sourceforge.net/projects/lirc/files/LIRC/0.9.0/lirc-${PV}.tar
            file://lircd_${MACHINE}.conf \
            file://lircmd.init \
            file://lircexec.init \
-           ${@bb.utils.contains_any("MACHINE", "adb_box arivalink200 ipbox55 ipbox99 ipbox9900 pace7241 sagemcom88 ufs910 vip1_v2 vip2_v1", "file://${PN}_sh4.patch file://lircd_sh4.init", "", d)} \
+           ${@bb.utils.contains_any("MACHINE", "adb_box arivalink200 ipbox55 ipbox99 ipbox9900 pace7241 sagemcom88 ufs910 vip1_v2 vip2_v1", "file://stlirc_sh4.patch file://lircd_sh4.init", "", d)} \
            ${@bb.utils.contains_any("MACHINE", "hl101 spark spark7162", "file://lircd_spark.init", "", d)} \
-           ${@bb.utils.contains_any("MACHINE", "hl101", "file://${PN}_hl101.patch file://lircd.conf.03_00_01 file://lircd.conf.03_00_02 file://lircd.conf.03_00_07", "", d)} \
-           ${@bb.utils.contains_any("MACHINE", "spark spark7162", "file://${PN}_spark.patch file://lircd.conf.09_00_07 file://lircd.conf.09_00_08 file://lircd.conf.09_00_0B file://lircd.conf.09_00_1D file://lircd.conf.09_00_0D", "", d)} \
+           ${@bb.utils.contains_any("MACHINE", "hl101", "file://stlirc_hl101.patch file://lircd.conf.03_00_01 file://lircd.conf.03_00_02 file://lircd.conf.03_00_07", "", d)} \
+           ${@bb.utils.contains_any("MACHINE", "spark spark7162", "file://stlirc_spark.patch file://lircd.conf.09_00_07 file://lircd.conf.09_00_08 file://lircd.conf.09_00_0B file://lircd.conf.09_00_1D file://lircd.conf.09_00_0D", "", d)} \
           "
 
 SRC_URI[md5sum] = "b232aef26f23fe33ea8305d276637086"

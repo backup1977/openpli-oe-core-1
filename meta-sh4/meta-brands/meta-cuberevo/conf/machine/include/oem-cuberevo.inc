@@ -38,7 +38,7 @@ SERIAL_CONSOLE = "115200 ttyAS0"
 
 DVBPROVIDER = "kernel"
 
-MACHINE_FEATURES += "ext2 serial switchoff textlcd singlecore legacykernel usbconsole wlan modutils-${BRAND_OEM} cuberevo"
+MACHINE_FEATURES += "ext2 serial switchoff textlcd singlecore legacykernel usbconsole wlan cuberevo"
 DISTRO_FEATURES_append += "libsigc2"
 
 DVBMEDIASINK_CONFIG = "--with-wma --with-wmv --with-pcm --with-eac3"
@@ -61,7 +61,7 @@ MACHINE_ESSENTIAL_EXTRA_RDEPENDS += "\
     ustslave \
     stfbcontrol \
     fp-control \
-    stinit \
+    devinit \
     ${BRAND_OEM}-dvb-modules \
     "
 
