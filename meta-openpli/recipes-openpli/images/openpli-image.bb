@@ -10,6 +10,7 @@ IMAGE_INSTALL = "\
 	${ROOTFS_PKGMANAGE} \
 	3rd-party-feed-configs \
 	avahi-daemon \
+	busybox-cron \
 	ca-certificates \
 	distro-feed-configs \
 	dropbear \
@@ -25,6 +26,7 @@ IMAGE_INSTALL = "\
 	openpli-bootlogo \
 	openssh-sftp-server \
 	opkg \
+	util-linux-mount \
 	packagegroup-base \
 	packagegroup-core-boot \
 	parted \
