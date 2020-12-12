@@ -9,9 +9,9 @@ LIC_FILES_CHKSUM = "file://LICENSES;md5=e9a558e243b36d3209f380deb394b213 \
       file://COPYING.LIB;md5=4fbd65380cdd255951079008b364516c"
 
 SRCBRANCH ?= "release/${PV}/master"
-PV = "2.23"
-SRCREV_glibc ?= "b039fd85db0717aca309b61925d00a5a6547a649"
-SRCREV_localedef ?= "5a81ff9f06a7a808d4c3d37bbf34077a4c5902ed"
+PV = "2.25"
+SRCREV_glibc ?= "a0408ec51ea862dda102482036c401d2e707e20b"
+SRCREV_localedef ?= "29869b6dc11427c5bab839bdb155c85a7c644c71"
 
 GLIBC_GIT_URI ?= "git://sourceware.org/git/glibc.git"
 
@@ -38,7 +38,7 @@ SRC_URI = "${GLIBC_GIT_URI};branch=${SRCBRANCH};name=glibc \
            file://0001-Include-locale_t.h-compatibility-header.patch \
            file://add-cross-localedef-hardlink.patch \
            file://allow-compile-separate-from-util-linux-hardlink.patch \
-           file://0030-glibc-2-23-add-no-hard-links-option.patch \
+           file://0030-glibc-add-no-hard-links-option.patch \
 "
 # Makes for a rather long rev (22 characters), but...
 #

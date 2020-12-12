@@ -21,8 +21,9 @@ MACHINE_KERNEL_PR = "r1"
 TARGET_ARCH = "sh4"
 DEFAULTTUNE = "sh4"
 
-GLIBCVERSION = "2.23"
+GLIBCVERSION = "2.25"
 GCCVERSION = "4.9.4"
+PREFERRED_VERSION_cross-localedef-native = "2.30"
 
 PREFERRED_PROVIDER_virtual/kernel = "linux-${BRAND_OEM}"
 #PREFERRED_VERSION_linux-libc-headers = "2.6.32"

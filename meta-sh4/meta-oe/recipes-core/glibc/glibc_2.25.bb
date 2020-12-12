@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSES;md5=e9a558e243b36d3209f380deb394b213 \
 
 DEPENDS += "gperf-native bison-native make-native"
 
-SRCREV ?= "b039fd85db0717aca309b61925d00a5a6547a649"
+SRCREV ?= "a0408ec51ea862dda102482036c401d2e707e20b"
 
 SRCBRANCH ?= "release/${PV}/master"
 
@@ -17,9 +17,9 @@ UPSTREAM_CHECK_GITTAGREGEX = "(?P<pver>\d+\.\d+(\.(?!90)\d+)*)"
 SRC_URI = "${GLIBC_GIT_URI};branch=${SRCBRANCH};name=glibc \
            file://etc/ld.so.conf \
            file://generate-supported.mk \
+           file://makedbs.sh \
            \
            ${NATIVESDKFIXES} \
-           file://0001-locale-fix-hard-coded-reference-to-gcc-E.patch \
            file://0005-fsl-e500-e5500-e6500-603e-fsqrt-implementation.patch \
            file://0006-readlib-Add-OECORE_KNOWN_INTERPRETER_NAMES-to-known-.patch \
            file://0007-ppc-sqrt-Fix-undefined-reference-to-__sqrt_finite.patch \
@@ -35,15 +35,16 @@ SRC_URI = "${GLIBC_GIT_URI};branch=${SRCBRANCH};name=glibc \
            file://0017-Remove-bash-dependency-for-nscd-init-script.patch \
            file://0018-eglibc-Cross-building-and-testing-instructions.patch \
            file://0019-eglibc-Help-bootstrap-cross-toolchain.patch \
-           file://0020-eglibc-2-23-cherry-picked-from.patch \
+           file://0020-eglibc-cherry-picked-from.patch \
            file://0021-eglibc-Clear-cache-lines-on-ppc8xx.patch \
            file://0022-eglibc-Resolve-__fpscr_values-on-SH4.patch \
-           file://0023-eglibc-Install-PIC-archives.patch \
-           file://0025-eglibc-Forward-port-cross-locale-generation-support.patch \
-           file://0026-When-disabling-SSE-make-sure-fpmath-is-not-set-to-us.patch \
+           file://0024-eglibc-Forward-port-cross-locale-generation-support.patch \
            file://0025-Define-DUMMY_LOCALE_T-if-not-defined.patch \
-           file://0026-build_local_scope.patch \
-           file://0030-glibc-2-23-add-no-hard-links-option.patch \
+           file://0026-elf-dl-deps.c-Make-_dl_build_local_scope-breadth-fir.patch \
+           file://0027-locale-fix-hard-coded-reference-to-gcc-E.patch \
+           file://0028-Rework-fno-omit-frame-pointer-support-on-i386.patch \
+           file://0029-bits-siginfo.h-enum-definition-for-TRAP_HWBKPT-is-mi.patch \
+           file://0030-glibc-add-no-hard-links-option.patch \
 "
 
 NATIVESDKFIXES ?= ""
@@ -52,7 +53,7 @@ NATIVESDKFIXES_class-nativesdk = "\
            file://0002-nativesdk-glibc-Fix-buffer-overrun-with-a-relocated-.patch \
            file://0003-nativesdk-glibc-Raise-the-size-of-arrays-containing-.patch \
            file://0004-nativesdk-glibc-Allow-64-bit-atomics-for-x86.patch \
-           file://0005-nativesdk-glibc-Make-relocatable-install-for-locales.patch \
+           file://relocate-locales.patch \
 "
 
 S = "${WORKDIR}/git"
@@ -64,8 +65,7 @@ PACKAGES_DYNAMIC = ""
 BUILD_CPPFLAGS = "-I${STAGING_INCDIR_NATIVE}"
 TARGET_CPPFLAGS = "-I${STAGING_DIR_TARGET}${includedir}"
 
-GLIBC_BROKEN_LOCALES = " _ER _ET so_ET yn_ER sid_ET tr_TR mn_MN gez_ET gez_ER bn_BD te_IN es_CR.ISO-8859-1"
-
+GLIBC_BROKEN_LOCALES = ""
 #
 # We will skip parsing glibc when target system C library selection is not glibc
 # this helps in easing out parsing for non-glibc system libraries
@@ -75,13 +75,26 @@ COMPATIBLE_HOST_libc-musl_class-target = "null"
 GLIBCPIE ??= ""
 
 EXTRA_OECONF = "--enable-kernel=${OLDEST_KERNEL} \
-                --disable-profile \
+                --without-cvs --disable-profile \
                 --disable-debug --without-gd \
                 --enable-clocale=gnu \
+                --enable-add-ons \
                 --with-headers=${STAGING_INCDIR} \
                 --without-selinux \
+                --enable-tunables \
                 --enable-bind-now \
+                --enable-stack-protector=strong \
                 --enable-stackguard-randomization \
+                --disable-crypt \
+                --with-default-link \
+                --enable-nscd \
+    --with-tls \
+    --with-__thread \
+    --enable-shared \
+    --enable-dso-hardening \
+    --without-ld_preload \
+    --without-ld_library_path \
+                ${@bb.utils.contains_any('SELECTED_OPTIMIZATION', '-O0 -Og', '--disable-werror', '', d)} \
                 ${GLIBCPIE} \
                 ${GLIBC_EXTRA_OECONF}"
 
