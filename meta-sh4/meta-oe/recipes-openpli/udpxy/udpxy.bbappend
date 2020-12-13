@@ -1,1 +1,2 @@
-CFLAGS_append_sh4 = " -Wno-format-truncation ${@bb.utils.contains("TARGET_ARCH", "sh4", "", "-Wno-error=stringop-truncation", d)} "
+CFLAGS_remove_sh4 = "-Wno-error=stringop-truncation"
+CFLAGS_append_sh4 = "-std=gnu11 -Werror=overlength-strings"

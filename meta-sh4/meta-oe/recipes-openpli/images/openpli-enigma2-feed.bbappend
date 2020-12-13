@@ -3,7 +3,6 @@ OPTIONAL_PACKAGES_remove_sh4 += "\
 	nodejs\
 	rclone \
 	zerotier \
-	udpxy \
 	"
 
 OPTIONAL_WIFI_PACKAGES_remove_sh4 = "\
