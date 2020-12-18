@@ -21,8 +21,9 @@ MACHINE_KERNEL_PR = "r1"
 TARGET_ARCH = "sh4"
 DEFAULTTUNE = "sh4"
 
-GLIBCVERSION = "2.23"
+GLIBCVERSION = "2.25"
 GCCVERSION = "4.9.4"
+PREFERRED_VERSION_cross-localedef-native = "2.30"
 
 PREFERRED_PROVIDER_virtual/kernel = "linux-${BRAND_OEM}"
 #PREFERRED_VERSION_linux-libc-headers = "2.6.32"
@@ -32,7 +33,7 @@ PREFERRED_VERSION_samba = "3.%"
 PREFERRED_PROVIDER_lirc = "stlirc"
 PREFERRED_PROVIDER_virtual/egl = "libstgles"
 PREFERRED_PROVIDER_virtual/libgles1 = "libstgles"
-PREFERRED_PROVIDER_virtual/enigma2-mediaservice ?= "enigma2-plugin-systemplugins-servicemp3epl"
+PREFERRED_PROVIDER_virtual/enigma2-mediaservice ?= "enigma2-plugin-systemplugins-servicemp3"
 
 SERIAL_CONSOLE = "115200 ttyAS0"
 

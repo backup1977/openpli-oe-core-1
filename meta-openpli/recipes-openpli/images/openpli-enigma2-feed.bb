@@ -54,7 +54,7 @@ OPTIONAL_WIFI_PACKAGES = "\
 #	rtl8723au
 
 OPTIONAL_PACKAGES += " \
-	${@ 'wireguard-tools' if ("${KERNEL_VERSION}" and bb.utils.vercmp_string("${KERNEL_VERSION}", '3.14') >= 0 and bb.utils.vercmp_string("${KERNEL_VERSION}", '5.8') < 0) else '' } \
+	${@ 'wireguard-tools' if ("${KERNEL_VERSION}" and bb.utils.vercmp_string("${KERNEL_VERSION}", '3.14') >= 0) else '' } \
 	astra-sm \
 	autofs \
 	autossh \
@@ -95,6 +95,7 @@ OPTIONAL_PACKAGES += " \
 	mtd-utils \
 	mtools \
 	nano \
+	net-snmp \
 	net-tools \
 	${@bb.utils.contains('TARGET_FPU', 'soft', '', 'nodejs', d)} \
 	ntfs-3g \
@@ -176,7 +177,10 @@ OPTIONAL_ENIGMA2_PACKAGES = " \
 	enigma2-plugin-extensions-managerautofs \
 	enigma2-plugin-extensions-hdmitest \
 	enigma2-plugin-extensions-moviemanager \
+	enigma2-plugin-extensions-sundtekcontrolcenter \
+	enigma2-plugin-extensions-ts-sateditor \
 	enigma2-plugin-systemplugins-crossepg \
+	enigma2-plugin-systemplugins-devicemanager \
 	enigma2-plugin-systemplugins-joynescan \
 	enigma2-plugin-systemplugins-misplslcnscan \
 	enigma2-plugin-systemplugins-mountmanager \

@@ -10,6 +10,7 @@ IMAGE_INSTALL = "\
 	${ROOTFS_PKGMANAGE} \
 	3rd-party-feed-configs \
 	avahi-daemon \
+	busybox-cron \
 	ca-certificates \
 	distro-feed-configs \
 	dropbear \
@@ -25,6 +26,7 @@ IMAGE_INSTALL = "\
 	openpli-bootlogo \
 	openssh-sftp-server \
 	opkg \
+	util-linux-mount \
 	packagegroup-base \
 	packagegroup-core-boot \
 	parted \
@@ -51,11 +53,9 @@ rootfs_removeopkgleftovers() {
 	rm -r ${IMAGE_ROOTFS}/var/lib/opkg/lists
 }
 
-# Speedup boot by reducing the host key size. The time it takes grows
-# exponentially by key size, the default is 2k which takes several
-# seconds on most boxes.
+# Switch from ssh-rsa to ecdsa-sha2-nistp521, as OpenSSH has deprecated ssh-rsa
 rootfs_speedup_dropbearkey() {
-	echo 'DROPBEAR_RSAKEY_ARGS="-s 1024"' >> ${IMAGE_ROOTFS}${sysconfdir}/default/dropbear
+	echo 'DROPBEAR_RSAKEY_ARGS="-t ecdsa -s 521"' >> ${IMAGE_ROOTFS}${sysconfdir}/default/dropbear
 }
 
 # Some features in image.bbclass we do NOT want, so override them
